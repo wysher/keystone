@@ -9,6 +9,7 @@
   "homepage": "https://github.com/keystonejs/keystone",
   "scripts": {
     "dev": "yarn demo todo dev",
+    "rels": "yarn demo todo rels",
     "demo": "manypkg run demo-projects",
     "website": "manypkg run website",
     "arch-docs": "manypkg run arch/docs",
