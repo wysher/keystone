@@ -3,9 +3,14 @@ section: guides
 title: New Schema Cheatsheet
 [meta]-->
 
+# New Schema Cheatsheet
+
+This cheatsheet summaries the changes needed to update your database to use the new Keystone database schema.
+For full instructions please consult the [migration guide](/docs/guides/relationship-migration.md).
+
 ## One to Many (one-sided)
 
-### List config
+### Example list config
 
 ```javascript
 keystone.createList('User', { fields: { name: { type: Text } } });
@@ -25,7 +30,7 @@ keystone.createList('Post', {
 
 ## Many to Many (one-sided)
 
-### List config
+### Example list config
 
 ```javascript
 keystone.createList('User', { fields: { name: { type: Text } } });
@@ -46,15 +51,15 @@ keystone.createList('Post', {
 - Rename `Post_authors` to `Post_authors_many`.
 - Rename `Post_id` to `Post_left_id` and `User_id` to `User_right_id`.
 
-### MongoDB
+#### MongoDB
 
-- Create a collections `post_authors_manies` and fields `Post_left_id` and `User_right_id`.
+- Create a collections `post_authors_manies` with fields `Post_left_id` and `User_right_id`.
 - Move the data from `post.authors` into `post_authors_manies`.
 - Delete `post.authors`.
 
 ## One to Many (two-sided)
 
-### List config
+### Example list config
 
 ```javascript
 keystone.createList('User', {
@@ -85,7 +90,7 @@ keystone.createList('Post', {
 
 ## Many to Many (two-sided)
 
-### List config
+### Example list config
 
 ```javascript
 keystone.createList('User', {
@@ -114,14 +119,14 @@ keystone.createList('Post', {
 
 #### MongoDB
 
-- Create a collections `user_posts_post_authors` and fields `User_left_id` and `Post_right_id`.
+- Create a collections `user_posts_post_authors` with fields `User_left_id` and `Post_right_id`.
 - Move the data from `user.posts` into `user_posts_post_authors`.
 - Delete `user.posts`.
 - Delete `post.authors`.
 
 ## One to One (two-sided)
 
-### List config
+### Example list config
 
 ```javascript
 keystone.createList('User', {
