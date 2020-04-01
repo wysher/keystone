@@ -1,5 +1,31 @@
 # @keystonejs/fields
 
+## 8.0.0
+
+### Major Changes
+
+- [`2ae2bd47`](https://github.com/keystonejs/keystone/commit/2ae2bd47eb54a816cfd4c8cd178c460729cbc258) [#2623](https://github.com/keystonejs/keystone/pull/2623) Thanks [@maryam-mv](https://github.com/maryam-mv)! - Updated @sindresorhus/slugify to fix a problem where it was producing unexpected output, eg. adding unexpected underscores: 'NAME1 Website' => 'nam_e1_website'. The slugify output for db name may be different with this change. For the above example, the output will now be 'name_1_website' for the same string.
+
+  If your database name changes unexpectedly, add an environment variable called `DATABASE_URL` with a full path to the database.
+
+### Patch Changes
+
+- [`e7e4bc1d`](https://github.com/keystonejs/keystone/commit/e7e4bc1d22149d4daceb31d303f6ad10c2b853ba) [#2585](https://github.com/keystonejs/keystone/pull/2585) Thanks [@timleslie](https://github.com/timleslie)! - Internal refactor, no functional changes.
+
+* [`58c4ffc3`](https://github.com/keystonejs/keystone/commit/58c4ffc3d4b1edf8bdfbc4ea299133d303239fc6) [#2611](https://github.com/keystonejs/keystone/pull/2611) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Fix build error with OEmbed field
+
+- [`007063c4`](https://github.com/keystonejs/keystone/commit/007063c4f17e6e7038312ed9126eaf91757e7939) [#2616](https://github.com/keystonejs/keystone/pull/2616) Thanks [@JedWatson](https://github.com/JedWatson)! - Improve layout of checkbox fields
+
+* [`c08c28d2`](https://github.com/keystonejs/keystone/commit/c08c28d22f2c6a2bfa73ab0ea347c9e0da8a9063) [#2593](https://github.com/keystonejs/keystone/pull/2593) Thanks [@jossmac](https://github.com/jossmac)! - Consistent voice throughout documentation
+
+* Updated dependencies [[`b4d16b89`](https://github.com/keystonejs/keystone/commit/b4d16b89aab643f34d70f42823817a246bf16373), [`7fc00071`](https://github.com/keystonejs/keystone/commit/7fc00071cd22514103593f0da68b9efa3bf853e9), [`007063c4`](https://github.com/keystonejs/keystone/commit/007063c4f17e6e7038312ed9126eaf91757e7939), [`c08c28d2`](https://github.com/keystonejs/keystone/commit/c08c28d22f2c6a2bfa73ab0ea347c9e0da8a9063), [`2ae2bd47`](https://github.com/keystonejs/keystone/commit/2ae2bd47eb54a816cfd4c8cd178c460729cbc258)]:
+  - @keystonejs/app-admin-ui@5.9.4
+  - @arch-ui/fields@2.1.5
+  - @keystonejs/adapter-knex@8.0.0
+  - @keystonejs/adapter-mongoose@7.0.0
+  - @keystonejs/test-utils@6.0.2
+  - @keystonejs/field-content@5.4.4
+
 ## 7.0.2
 
 ### Patch Changes

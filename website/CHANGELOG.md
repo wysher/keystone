@@ -1,5 +1,25 @@
 # @keystonejs/website
 
+## 5.3.0
+
+### Minor Changes
+
+- [`6458ffa0`](https://github.com/keystonejs/keystone/commit/6458ffa08e0e77fbb039a042a13129310937946d) [#2579](https://github.com/keystonejs/keystone/pull/2579) Thanks [@jossmac](https://github.com/jossmac)! - Added heading navigation to the docs pages
+
+### Patch Changes
+
+- [`b6f99f8e`](https://github.com/keystonejs/keystone/commit/b6f99f8ed07e72a51ab6acf10e9141e7526976a2) [#2594](https://github.com/keystonejs/keystone/pull/2594) Thanks [@Vultraz](https://github.com/Vultraz)! - Updated API documentation.
+
+* [`b4d16b89`](https://github.com/keystonejs/keystone/commit/b4d16b89aab643f34d70f42823817a246bf16373) [#2560](https://github.com/keystonejs/keystone/pull/2560) Thanks [@JedWatson](https://github.com/JedWatson)! - Updating links to Keystone github project
+
+- [`a426a58d`](https://github.com/keystonejs/keystone/commit/a426a58d10dadbb4cf87b41984909726dce315f7) [#2622](https://github.com/keystonejs/keystone/pull/2622) Thanks [@jossmac](https://github.com/jossmac)! - Fix table-of-contents in docs pages:
+  - resolve out-of-sync ID issue (`github-slugger` VS `@sindresorhus/slugify`)
+  - allow items to wrap, without looking like separate items
+
+* [`c08c28d2`](https://github.com/keystonejs/keystone/commit/c08c28d22f2c6a2bfa73ab0ea347c9e0da8a9063) [#2593](https://github.com/keystonejs/keystone/pull/2593) Thanks [@jossmac](https://github.com/jossmac)! - Consistent voice throughout documentation
+
+- [`6458ffa0`](https://github.com/keystonejs/keystone/commit/6458ffa08e0e77fbb039a042a13129310937946d) [#2579](https://github.com/keystonejs/keystone/pull/2579) Thanks [@jossmac](https://github.com/jossmac)! - Made the header and sidebar sticky
+
 ## 5.2.0
 
 ### Minor Changes

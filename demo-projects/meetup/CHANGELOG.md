@@ -1,5 +1,30 @@
 # @keystonejs/demo-project-meetup
 
+## 5.1.6
+
+### Patch Changes
+
+- [`b4d16b89`](https://github.com/keystonejs/keystone/commit/b4d16b89aab643f34d70f42823817a246bf16373) [#2560](https://github.com/keystonejs/keystone/pull/2560) Thanks [@JedWatson](https://github.com/JedWatson)! - Updating links to Keystone github project
+
+* [`0339eaf1`](https://github.com/keystonejs/keystone/commit/0339eaf1bde1b5d814f8745812ab3a1bd72fc8aa) [#2607](https://github.com/keystonejs/keystone/pull/2607) Thanks [@Vultraz](https://github.com/Vultraz)! - Made the Meetup demo functional again, and refactored out last use of withApollo.
+
+- [`89bec596`](https://github.com/keystonejs/keystone/commit/89bec5966c07ea700a863d3a7a8d1ebb8fb5541a) [#2608](https://github.com/keystonejs/keystone/pull/2608) Thanks [@Vultraz](https://github.com/Vultraz)! - Updated Next.js depedency to 9.3.2 to incorporate an important security fix.
+
+* [`c70c339a`](https://github.com/keystonejs/keystone/commit/c70c339a307d92427962f7332bc371f9226bb2d6) [#2603](https://github.com/keystonejs/keystone/pull/2603) Thanks [@Vultraz](https://github.com/Vultraz)! - Removed apollo-boost dependency and switched the meetup demo to using apollo-upload-client.
+
+* Updated dependencies [[`e7e4bc1d`](https://github.com/keystonejs/keystone/commit/e7e4bc1d22149d4daceb31d303f6ad10c2b853ba), [`58c4ffc3`](https://github.com/keystonejs/keystone/commit/58c4ffc3d4b1edf8bdfbc4ea299133d303239fc6), [`b4d16b89`](https://github.com/keystonejs/keystone/commit/b4d16b89aab643f34d70f42823817a246bf16373), [`7fc00071`](https://github.com/keystonejs/keystone/commit/7fc00071cd22514103593f0da68b9efa3bf853e9), [`007063c4`](https://github.com/keystonejs/keystone/commit/007063c4f17e6e7038312ed9126eaf91757e7939), [`89bec596`](https://github.com/keystonejs/keystone/commit/89bec5966c07ea700a863d3a7a8d1ebb8fb5541a), [`4a7d1eab`](https://github.com/keystonejs/keystone/commit/4a7d1eabf9b44fac7e16dfe20afdce409986e8dc), [`c08c28d2`](https://github.com/keystonejs/keystone/commit/c08c28d22f2c6a2bfa73ab0ea347c9e0da8a9063), [`2ae2bd47`](https://github.com/keystonejs/keystone/commit/2ae2bd47eb54a816cfd4c8cd178c460729cbc258), [`3407fa68`](https://github.com/keystonejs/keystone/commit/3407fa68b91d7ebb3e7288c7e95631013fe12535), [`c2b1b725`](https://github.com/keystonejs/keystone/commit/c2b1b725a9474348964a4ac2e0f5b4aaf1a7f486)]:
+  - @keystonejs/fields@8.0.0
+  - @keystonejs/app-admin-ui@5.9.4
+  - @keystonejs/app-next@5.1.2
+  - @keystonejs/keystone@7.1.0
+  - @keystonejs/adapter-mongoose@7.0.0
+  - @keystonejs/app-graphql@5.1.5
+  - @keystonejs/auth-password@5.1.4
+  - @keystonejs/email@5.1.2
+  - @keystonejs/file-adapters@6.0.1
+  - @keystonejs/session@6.0.1
+  - @keystonejs/fields-wysiwyg-tinymce@5.2.2
+
 ## 5.1.5
 
 ### Patch Changes
