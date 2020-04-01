@@ -40,6 +40,8 @@ The [official PostgreSQL documentation](https://www.postgresql.org/docs/12/backu
 
 ## Identify required changes
 
+[Cheatsheet](/docs/guides/new-schema-cheatsheet.md)
+
 ### MongoDB
 
 ### PostgreSQL

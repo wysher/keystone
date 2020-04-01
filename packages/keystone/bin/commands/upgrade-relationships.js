@@ -11,7 +11,7 @@ const printArrow = ({ left, right }) => {
   }
 };
 
-const strategySummary = ({
+const pgStrategySummary = ({
   one_one_to_many,
   one_many_to_many,
   two_one_to_one,
@@ -28,9 +28,11 @@ const strategySummary = ({
   one_many_to_many.forEach(({ left, columnNames, tableName }) => {
     const { near, far } = columnNames[`${left.listKey}.${left.path}`];
     printArrow({ left });
-    console.log(`    * Rename table ${left.listKey}_${left.path} to ${tableName}`);
-    console.log(`    * Rename column ${left.listKey}_id to ${near}`);
-    console.log(`    * Rename column ${left.refListKey}_id to ${far}`);
+    console.log(
+      `    * Rename table ${chalk.cyan(`${left.listKey}_${left.path}`)} to ${chalk.cyan(tableName)}`
+    );
+    console.log(`    * Rename column ${chalk.cyan(`${left.listKey}_id`)} to ${chalk.cyan(near)}`);
+    console.log(`    * Rename column ${chalk.cyan(`${left.refListKey}_id`)} to ${chalk.cyan(far)}`);
   });
   console.log(chalk.bold('Two-sided: one to one'));
   two_one_to_one.forEach(({ left, right }) => {
@@ -41,16 +43,69 @@ const strategySummary = ({
   two_one_to_many.forEach(({ left, right, tableName }) => {
     const dropper = left.listKey === tableName ? right : left;
     printArrow({ left, right });
-    console.log(`    * Drop table ${dropper.listKey}_${dropper.path}`);
+    console.log(`    * Drop table ${chalk.cyan(`${dropper.listKey}_${dropper.path}`)}`);
   });
   console.log(chalk.bold('Two-sided: many to many'));
   two_many_to_many.forEach(({ left, right, tableName, columnNames }) => {
     const { near, far } = columnNames[`${left.listKey}.${left.path}`];
     printArrow({ left, right });
-    console.log(`    * Drop table ${right.listKey}_${right.path}`);
-    console.log(`    * Rename table ${left.listKey}_${left.path} to ${tableName}`);
-    console.log(`    * Rename column ${left.listKey}_id to ${near}`);
-    console.log(`    * Rename column ${left.refListKey}_id to ${far}`);
+    console.log(`    * Drop table ${chalk.cyan(`${right.listKey}_${right.path}`)}`);
+    console.log(
+      `    * Rename table ${chalk.cyan(`${left.listKey}_${left.path}`)} to ${chalk.cyan(tableName)}`
+    );
+    console.log(`    * Rename column ${chalk.cyan(`${left.listKey}_id`)} to ${chalk.cyan(near)}`);
+    console.log(`    * Rename column ${chalk.cyan(`${left.refListKey}_id`)} to ${chalk.cyan(far)}`);
+  });
+};
+
+const mongoStrategySummary = ({
+  one_one_to_many,
+  one_many_to_many,
+  two_one_to_one,
+  two_one_to_many,
+  two_many_to_many,
+}) => {
+  console.log(chalk.bold('One-sided: one to many'));
+  one_one_to_many.forEach(({ left }) => {
+    printArrow({ left });
+    console.log('    * FIXME');
+    // console.log('    * No action required');
+  });
+
+  console.log(chalk.bold('One-sided: mamny to many'));
+  one_many_to_many.forEach(({ left, columnNames, tableName }) => {
+    const { near, far } = columnNames[`${left.listKey}.${left.path}`];
+    printArrow({ left });
+    console.log('    * FIXME');
+    // console.log(
+    //   `    * Rename table ${chalk.cyan(`${left.listKey}_${left.path}`)} to ${chalk.cyan(tableName)}`
+    // );
+    // console.log(`    * Rename column ${chalk.cyan(`${left.listKey}_id`)} to ${chalk.cyan(near)}`);
+    // console.log(`    * Rename column ${chalk.cyan(`${left.refListKey}_id`)} to ${chalk.cyan(far)}`);
+  });
+  console.log(chalk.bold('Two-sided: one to one'));
+  two_one_to_one.forEach(({ left, right }) => {
+    printArrow({ left, right });
+    console.log('    * FIXME');
+  });
+  console.log(chalk.bold('Two-sided: one to many'));
+  two_one_to_many.forEach(({ left, right, tableName }) => {
+    const dropper = left.listKey === tableName ? right : left;
+    printArrow({ left, right });
+    console.log('    * FIXME');
+    // console.log(`    * Drop table ${chalk.cyan(`${dropper.listKey}_${dropper.path}`)}`);
+  });
+  console.log(chalk.bold('Two-sided: many to many'));
+  two_many_to_many.forEach(({ left, right, tableName, columnNames }) => {
+    const { near, far } = columnNames[`${left.listKey}.${left.path}`];
+    printArrow({ left, right });
+    console.log('    * FIXME');
+    // console.log(`    * Drop table ${chalk.cyan(`${right.listKey}_${right.path}`)}`);
+    // console.log(
+    //   `    * Rename table ${chalk.cyan(`${left.listKey}_${left.path}`)} to ${chalk.cyan(tableName)}`
+    // );
+    // console.log(`    * Rename column ${chalk.cyan(`${left.listKey}_id`)} to ${chalk.cyan(near)}`);
+    // console.log(`    * Rename column ${chalk.cyan(`${left.refListKey}_id`)} to ${chalk.cyan(far)}`);
   });
 };
 
@@ -84,13 +139,14 @@ const simpleSummary = ({
   });
 };
 
-const upgradeRelationships = async (args, entryFile, spinner) => {
+const upgradeRelationships = async (args, entryFile) => {
   // Allow the spinner time to flush its output to the console.
-  console.log(spinner);
-  console.log(simpleSummary);
+  console.log(args);
   await new Promise(resolve => setTimeout(resolve, 100));
   const { keystone } = require(path.resolve(entryFile));
 
+  const mongo = !!keystone.adapters.MongooseAdapter;
+  console.log({ mongo });
   const rels = keystone._consolidateRelationships();
 
   const one_one_to_many = rels.filter(({ right, cardinality }) => !right && cardinality !== 'N:N');
@@ -102,13 +158,32 @@ const upgradeRelationships = async (args, entryFile, spinner) => {
   );
   const two_many_to_many = rels.filter(({ right, cardinality }) => right && cardinality === 'N:N');
 
-  strategySummary({
-    one_one_to_many,
-    one_many_to_many,
-    two_one_to_one,
-    two_one_to_many,
-    two_many_to_many,
-  });
+  if (args.simple) {
+    simpleSummary({
+      one_one_to_many,
+      one_many_to_many,
+      two_one_to_one,
+      two_one_to_many,
+      two_many_to_many,
+    });
+  }
+  if (mongo) {
+    mongoStrategySummary({
+      one_one_to_many,
+      one_many_to_many,
+      two_one_to_one,
+      two_one_to_many,
+      two_many_to_many,
+    });
+  } else {
+    pgStrategySummary({
+      one_one_to_many,
+      one_many_to_many,
+      two_one_to_one,
+      two_one_to_many,
+      two_many_to_many,
+    });
+  }
   process.exit(0);
 };
 
@@ -128,6 +203,6 @@ module.exports = {
     spinner.text = 'Validating project entry file';
     const entryFile = await getEntryFileFullPath(args, { exeName, _cwd });
     spinner.start(' ');
-    return upgradeRelationships(args, entryFile, spinner);
+    return upgradeRelationships(args, entryFile);
   },
 };
